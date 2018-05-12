@@ -5,8 +5,6 @@ if __name__ == "__main__":
     pygame.init()
     window = Window()
 
-    window.splash()
-
     while True:
         window.main()
-pygame.display.update()
+        pygame.display.update()
