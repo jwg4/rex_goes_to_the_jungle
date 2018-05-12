@@ -16,7 +16,13 @@ class Window(object):
         self.clock = pygame.time.Clock()
         self.portal_offset = 0
         self.init_rex()
+        self.init_music()
         self.draw()
+
+    def init_music(self):
+        pygame.mixer.init()
+        pygame.mixer.music.load("music/portal.wav")
+        pygame.mixer.music.play(-1)
 
     def init_rex(self):
         self.rex_location = self.center
@@ -62,6 +68,7 @@ class Window(object):
         pass
 
     def quit(self):
+        pygame.mixer.music.stop()
         pygame.quit()
         sys.exit()
 
