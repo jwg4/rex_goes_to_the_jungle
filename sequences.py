@@ -29,6 +29,15 @@ class BaseSequence(object):
 
     def handle_key_up(self, key):
         pass
+    
+    def compare_distance(self, point, radius):
+        p_x, p_y = point
+        d_x = p_x - self.rex_location[0]
+        d_y = p_y - self.rex_location[1]
+        if d_x ** 2 + d_y ** 2 < radius ** 2:
+            return True
+        else:
+            return False
 
 
 class CaveSequence(BaseSequence):
@@ -55,13 +64,13 @@ class CaveSequence(BaseSequence):
         elif (key == pygame.K_RIGHT):
             if self.rex_location[0] < self.window.dimensions[0] - self.SPEED:
                 self.rex_location = (self.rex_location[0] + self.SPEED, self.rex_location[1])
-        if (key == pygame.K_DOWN):
+        if (key == pygame.K_UP):
             if self.rex_location[1] > self.SPEED:
                 self.rex_location = (self.rex_location[0], self.rex_location[1] - self.SPEED)
-        elif (key == pygame.K_UP):
+        elif (key == pygame.K_DOWN):
             if self.rex_location[1] < self.window.dimensions[1] - self.SPEED:
                 self.rex_location = (self.rex_location[0], self.rex_location[1] + self.SPEED)
-        if (self.rex_location[0] ** 2 + self.rex_location[1] ** 2 < 4 * self.SPEED ** 2):
+        if self.compare_distance(self.window.center, self.SPEED * 2):
             self.in_portal = True
 
 class PortalSequence(BaseSequence):
