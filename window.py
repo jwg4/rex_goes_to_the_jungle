@@ -42,8 +42,11 @@ class Window(object):
         self.draw()
 
     def draw(self):
-        self.current_sequence.draw()
+        next_state = self.current_sequence.draw()
         self.real_window.blit(pygame.transform.scale(self.window, self.scaled_dimensions), (0, 0))
+        if next_state:
+            self.current_sequence = self.sequences[next_state]
+            self.current_sequence.init()
 
     def quit(self):
         pygame.mixer.music.stop()
