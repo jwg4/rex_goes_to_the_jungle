@@ -21,7 +21,7 @@ class Window(object):
 
     def init_music(self):
         pygame.mixer.init()
-        pygame.mixer.music.load("music/portal.wav")
+        pygame.mixer.music.load("music/portal.ogg")
         pygame.mixer.music.play(-1)
 
     def init_rex(self):
