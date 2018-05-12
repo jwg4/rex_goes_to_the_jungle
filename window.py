@@ -48,12 +48,14 @@ class Window(object):
         self.window.blit(self.rex_image, location)
     
     def draw_background(self):
-        WIDTH = 20
-        COLORS = [
-            (255, 255, 0),
-            (255, 0, 255),
-            (0, 255, 255),
-        ]
+        self.draw_portal_opening()
+
+    def draw_portal_opening(self):
+        self.window.fill((30, 200, 40))
+        color = random.choice(portal.COLORS)
+        pygame.draw.circle(self.window, color, self.center, portal.WIDTH * 3, portal.WIDTH)
+        
+    def draw_portal_journey(self):
         self.window.fill((0, 0, 0))
         for i in range(0, self.dimensions[0] // (2 * portal.WIDTH) + 2):
             k = i * 2 + 1
