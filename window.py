@@ -19,7 +19,7 @@ class Window(object):
 
     def init_rex(self):
         self.rex_location = self.center
-        self.rex_image = pygame.image.load("img/REX.png")
+        self.rex_image = pygame.image.load("img/sprites/REX.png")
         self.rex_shift = (self.rex_image.get_width() // 2, self.rex_image.get_height() // 2)
     
     def main(self):
