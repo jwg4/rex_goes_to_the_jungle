@@ -18,6 +18,7 @@ class Window(object):
     def init_rex(self):
         self.rex_location = (self.dimensions[0] / 2, self.dimensions[1] / 2)
         self.rex_image = pygame.image.load("img/REX.png")
+        self.rex_shift = (self.rex_image.get_width() / 2, self.rex_image.get_height() / 2)
     
     def main(self):
         self.clock.tick(40)
@@ -30,7 +31,11 @@ class Window(object):
         self.real_window.blit(pygame.transform.scale(self.window, self.scaled_dimensions), (0, 0))
 
     def draw_rex(self):
-        self.window.blit(self.rex_image, self.rex_location)
+        location = (
+            self.rex_location[0] - self.rex_shift[0],
+            self.rex_location[1] - self.rex_shift[1]
+        )
+        self.window.blit(self.rex_image, location)
     
     def draw_background(self):
         self.window.fill((0, 0, 0))
