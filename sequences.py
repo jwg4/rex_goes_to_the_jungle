@@ -27,6 +27,8 @@ class BaseSequence(object):
 
 
 class CaveSequence(BaseSequence):
+    SPEED = 5
+
     def init(self):
         self.rex_location = self.window.rex_shift
            
@@ -35,6 +37,13 @@ class CaveSequence(BaseSequence):
         color = random.choice(portal.COLORS)
         pygame.draw.circle(self.window.window, color, self.window.center, portal.WIDTH * 3, portal.WIDTH)
 
+    def handle_key(self, key):
+        if (key == pygame.K_LEFT):
+            if self.rex_location[0] > self.SPEED:
+                self.rex_location = (self.rex_location[0] - self.SPEED, self.rex_location[1])
+        elif (key == pygame.K_RIGHT):
+            if self.rex_location[0] < self.window.dimensions[0] - self.SPEED:
+                self.rex_location = (self.rex_location[0] + self.SPEED, self.rex_location[1])
 
 class PortalSequence(BaseSequence):
     def init(self):

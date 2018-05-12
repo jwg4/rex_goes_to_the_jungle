@@ -26,7 +26,7 @@ class Window(object):
             'CAVE': CaveSequence(self),
             'PORTAL': PortalSequence(self)
         }
-        self.current_sequence = self.sequences['PORTAL']
+        self.current_sequence = self.sequences['CAVE']
         self.current_sequence.init()
 
     def init_music(self):
