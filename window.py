@@ -34,3 +34,18 @@ class Window(object):
     
     def draw_background(self):
         self.window.fill((0, 0, 0))
+    
+    def handle_key(self, key):
+        pass
+
+    def handle_key_up(self, key):
+        pass
+
+    def listen_for_input(self):
+        for event in pygame.event.get():
+            if (event.type == pygame.KEYDOWN):
+                self.handle_key(event.key)
+            elif event.type == pygame.QUIT:
+                self.quit()
+            elif event.type == pygame.KEYUP:  # Keyboard
+                self.handle_key_up(event.key)
