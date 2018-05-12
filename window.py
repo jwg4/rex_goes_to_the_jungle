@@ -41,6 +41,10 @@ class Window(object):
     def handle_key_up(self, key):
         pass
 
+    def quit(self):
+        pygame.quit()
+        sys.exit()
+
     def listen_for_input(self):
         for event in pygame.event.get():
             if (event.type == pygame.KEYDOWN):
