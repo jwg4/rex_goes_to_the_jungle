@@ -2,6 +2,7 @@ import pygame
 import random
 import sys
 
+import portal
 from dimensions import IMAGE_DIMENSIONS, WINDOW_DIMENSIONS
 
 
@@ -54,12 +55,12 @@ class Window(object):
             (0, 255, 255),
         ]
         self.window.fill((0, 0, 0))
-        for i in range(0, self.dimensions[0] // (2 * WIDTH) + 2):
+        for i in range(0, self.dimensions[0] // (2 * portal.WIDTH) + 2):
             k = i * 2 + 1
-            r = self.portal_offset + k * WIDTH
-            color = random.choice(COLORS)
-            pygame.draw.circle(self.window, color, self.center, r, WIDTH)
-        self.portal_offset = (self.portal_offset + 1) % (2 * WIDTH)
+            r = self.portal_offset + k * portal.WIDTH
+            color = random.choice(portal.COLORS)
+            pygame.draw.circle(self.window, color, self.center, r, portal.WIDTH)
+        self.portal_offset = (self.portal_offset + 1) % (2 * portal.WIDTH)
 
     def handle_key(self, key):
         pass
