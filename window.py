@@ -4,7 +4,7 @@ import sys
 
 import portal
 from dimensions import IMAGE_DIMENSIONS, WINDOW_DIMENSIONS
-from sequences import CaveSequence, PortalSequence
+from sequences import CaveSequence, JungleSequence, PortalSequence
 
 
 class Window(object):
@@ -24,7 +24,8 @@ class Window(object):
     def init_sequences(self):
         self.sequences = {
             'CAVE': CaveSequence(self),
-            'PORTAL': PortalSequence(self)
+            'JUNGLE': JungleSequence(self),
+            'PORTAL': PortalSequence(self),
         }
         self.current_sequence = self.sequences['CAVE']
         self.current_sequence.init()

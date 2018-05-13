@@ -39,23 +39,8 @@ class BaseSequence(object):
         else:
             return False
 
-
-class CaveSequence(BaseSequence):
+class MovementSequence(BaseSequence):
     SPEED = 5
-
-    def init(self):
-        self.rex_location = self.window.rex_shift
-        self.in_portal = False
-
-    def draw_background(self):
-        self.window.window.fill((30, 200, 40))
-        color = random.choice(portal.COLORS)
-        pygame.draw.circle(self.window.window, color, self.window.center, portal.WIDTH * 3, portal.WIDTH)
-
-    @property
-    def state(self):
-        if self.in_portal:
-            return 'PORTAL'
 
     def handle_key(self, key):
         if (key == pygame.K_LEFT):
@@ -70,8 +55,32 @@ class CaveSequence(BaseSequence):
         elif (key == pygame.K_DOWN):
             if self.rex_location[1] < self.window.dimensions[1] - self.SPEED:
                 self.rex_location = (self.rex_location[0], self.rex_location[1] + self.SPEED)
+        self.handle_location()
+
+    def handle_location(self):
+        pass
+
+class CaveSequence(MovementSequence):
+    def init(self):
+        self.rex_location = self.window.rex_shift
+        self.in_portal = False
+
+    def draw_background(self):
+        self.window.window.fill((30, 200, 40))
+        color = random.choice(portal.COLORS)
+        pygame.draw.circle(self.window.window, color, self.window.center, portal.WIDTH * 3, portal.WIDTH)
+
+    @property
+    def state(self):
+        if self.in_portal:
+            return 'PORTAL'
+    
+    def handle_location(self):
         if self.compare_distance(self.window.center, self.SPEED * 2):
             self.in_portal = True
+
+class JungleSequence(MovementSequence):
+    pass
 
 class PortalSequence(BaseSequence):
     def init(self):
