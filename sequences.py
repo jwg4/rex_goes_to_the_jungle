@@ -38,6 +38,9 @@ class BaseSequence(object):
             return True
         else:
             return False
+    
+    def exit(self):
+        pygame.mixer.music.stop()
 
 class MovementSequence(BaseSequence):
     SPEED = 5
