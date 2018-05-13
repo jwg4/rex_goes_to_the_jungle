@@ -94,16 +94,22 @@ class JungleSequence(MovementSequence):
 class PortalSequence(BaseSequence):
     def init(self):
         self.rex_location = self.window.center
-        self.portal_offset = 0
+        self.portal_count = 0
         pygame.mixer.music.load("music/portal.ogg")
         pygame.mixer.music.play(-1)
     
     def draw_background(self):
         self.window.window.fill((0, 0, 0))
+        portal_offset = self.portal_count % (2 * portal.WIDTH)
         for i in range(0, self.window.dimensions[0] // (2 * portal.WIDTH) + 2):
             k = i * 2 + 1
-            r = self.portal_offset + k * portal.WIDTH
+            r = portal_offset + k * portal.WIDTH
             color = random.choice(portal.COLORS)
             pygame.draw.circle(self.window.window, color, self.window.center, r, portal.WIDTH)
-        self.portal_offset = (self.portal_offset + 1) % (2 * portal.WIDTH)
+        self.portal_count = self.portal_count + 1
 
+    @property
+    def state(self):
+        if self.portal_count > 25 * 10:
+            return "JUNGLE"
+        return None
