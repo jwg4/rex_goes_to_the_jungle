@@ -82,10 +82,10 @@ class CaveSequence(MovementSequence):
         if self.compare_distance(self.window.center, self.SPEED * 2):
             self.in_portal = True
 
-class JungleSequence(MovementSequence):
+class DesertSequence(MovementSequence):
     def __init__(self, window):
         self.window = window
-        self.background = pygame.image.load("img/bg/jungle.png")
+        self.background = pygame.image.load("img/bg/desert.png")
     
     def init(self):
         self.rex_location = self.window.center
@@ -114,5 +114,5 @@ class PortalSequence(BaseSequence):
     @property
     def state(self):
         if self.portal_count > 25 * 10:
-            return "JUNGLE"
+            return "DESERT"
         return None
