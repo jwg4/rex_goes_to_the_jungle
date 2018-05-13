@@ -89,6 +89,8 @@ class DesertSequence(MovementSequence):
     
     def init(self):
         self.rex_location = self.window.center
+        pygame.mixer.music.load("music/desert.ogg")
+        pygame.mixer.music.play(-1)
 
     def draw_background(self):
         self.window.window.blit(self.background, (0, 0))
