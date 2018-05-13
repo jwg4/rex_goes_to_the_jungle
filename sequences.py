@@ -80,7 +80,16 @@ class CaveSequence(MovementSequence):
             self.in_portal = True
 
 class JungleSequence(MovementSequence):
-    pass
+    def __init__(self, window):
+        self.window = window
+        self.background = pygame.image.load("img/bg/jungle.png")
+    
+    def init(self):
+        self.rex_location = self.window.center
+
+    def draw_background(self):
+        self.window.window.blit(self.background, (0, 0))
+
 
 class PortalSequence(BaseSequence):
     def init(self):
